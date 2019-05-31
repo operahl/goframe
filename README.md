@@ -39,9 +39,11 @@
 
         go get -u github.com/operahl/pkgreplace 
          
-        pkgreplace goframe myframe           
+        pkgreplace goframe myframe 
         
-        //会在当前目录创建一个新项目myframe，包名都会替换成myframe
+        export GO111MODULE=on
+                
+        go mod vendor
 
 ### 启动说明
 
