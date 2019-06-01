@@ -10,7 +10,6 @@ var Config Conf
 
 type Conf struct {
 	Server struct {
-		AppName            string // 服务名
 		Port               string //http服务端口
 		Aeskey             string //aes加密秘钥
 		AeskeyBytes        []byte //同上，二进制状态，初始访问会对其赋值，进行Cache
