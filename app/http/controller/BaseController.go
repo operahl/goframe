@@ -45,9 +45,9 @@ func (self *BaseController) Response(c *gin.Context, ret int, data interface{}) 
 			c.JSON(200, gin.H{"ret": conf.CodeAesErr})
 			return
 		}
-		c.JSON(200, gin.H{"ret": conf.CodeOk, "dat": okData})
+		c.JSON(200, gin.H{"ret": conf.CodeOk, "data": okData})
 	} else {
-		c.JSON(200, gin.H{"ret": conf.CodeOk, "dat": data})
+		c.JSON(200, gin.H{"ret": conf.CodeOk, "data": data})
 	}
 }
 
