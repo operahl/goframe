@@ -17,12 +17,8 @@ import (
 
 func init() {
 	var (
-		configFile = "../../conf/toml/dev.toml"
-		goframe_env = os.Getenv("GOFRAME_ENV")
+		configFile = "config.toml"
 	)
-	if goframe_env != "" {
-		configFile = "./conf/toml/" + goframe_env + ".toml"
-	}
 	if len(os.Args) >= 2 {
 		configFile = os.Args[1]
 	}
