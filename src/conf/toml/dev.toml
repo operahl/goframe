@@ -1,0 +1,44 @@
+[server]
+    port=":9999"
+    aeskey="5df66666965dffc666effd8ffcfdfa66"
+    mode="test"
+    #release
+    ginmode="debug"
+    passsalt="iamsalt"
+
+[log]
+    logPath="/Users/huanglin/logs/ofood.log"
+    logLevel="debug"
+    maxSize=500
+    maxAge=30
+    MaxBackups=7
+[mysql]
+    host="127.0.0.1"
+    username="root"
+    password="123456"
+    port="3306"
+    database="test"
+    maxOpenConns=5
+    maxIdleConns=1
+
+[redis]
+
+    host="127.0.0.1"
+    port="6379"
+    auth=""
+    db=0
+    maxIdle=100
+    MaxActive=3000
+    idleTimeout=360
+
+
+#一些访问需要做ip限制
+[ipWhiteList]
+    ips=["127.0.*.*","61.148.75.238","172.31.0.*"]
+
+
+
+
+[common]
+    tokenTtl=7776000
+    redisExpireTime=7776000
