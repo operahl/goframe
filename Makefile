@@ -10,11 +10,11 @@ export GOPATH
 dep:
 	cd src; ${ENVARG} go get ./...; cd -
 
-ofoodhttp:
-	cd src/app/http; ${ENVARG} go build ${BUILDARG} -o ../../../bin/ofoodhttp main.go; cd -
+ofoodapi:
+	cd src/app/http; ${ENVARG} go build ${BUILDARG} -o ../../../bin/ofoodapi main.go; cd -
 
-linux_ofoodhttp:
-	cd src/app/http; ${ENVARG} ${LINUXARG} go build ${BUILDARG} -o ../../../lbin/ofoodhttp main.go; cd -
+linux_ofoodapi:
+	cd src/app/api; ${ENVARG} ${LINUXARG} go build ${BUILDARG} -o ../../../lbin/ofoodapi main.go; cd -
 
 clean:
 	rm -fr bin/*
