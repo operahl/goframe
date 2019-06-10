@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"goframe/conf"
-	"goframe/lib/encrypt"
 	"runtime"
 	//"fmt"
 	"goframe/lib/prometheus"
@@ -36,19 +35,7 @@ func (self *BaseController) Response(c *gin.Context, ret int, data interface{}) 
 		return
 	}
 
-	//c.JSON(200, gin.H{"ret": conf.CodeOk,"expired":600,"data": data})
-	if self.isEncry(c.Query("aes")) {
-		dataStr, _ := json.Marshal(data)
-		key := conf.Config.Server.AeskeyBytes
-		ok, okData := encrypt.Encryper(dataStr, key)
-		if !ok {
-			c.JSON(200, gin.H{"ret": conf.CodeAesErr})
-			return
-		}
-		c.JSON(200, gin.H{"ret": conf.CodeOk, "data": okData})
-	} else {
-		c.JSON(200, gin.H{"ret": conf.CodeOk, "data": data})
-	}
+	c.JSON(200, gin.H{"ret": conf.CodeOk, "data": data})
 }
 
 //post 方法统一接收数据,没有做json的解析
@@ -57,30 +44,14 @@ func (self *BaseController) Request(c *gin.Context) (int, []byte) {
 	if err != nil {
 		return conf.CodeParaErr, nil
 	}
-	if self.isEncry(c.Query("aes")) {
-		ok, okData := encrypt.Decryper(postData, conf.Config.Server.AeskeyBytes)
-		if !ok {
-			return conf.CodeAesErr, nil
-		}
-		return conf.CodeOk, okData
-	} else {
-		return conf.CodeOk, postData
-	}
+	return conf.CodeOk, postData
 }
 
 //接收特殊场景的数据
 func (self *BaseController) SpRequest(c *gin.Context) (int, []byte) {
 	tmpData := c.PostForm("data")
 	postData := []byte(tmpData)
-	if self.isEncry(c.Query("aes")) {
-		ok, okData := encrypt.Decryper(postData, conf.Config.Server.AeskeyBytes)
-		if !ok {
-			return conf.CodeAesErr, nil
-		}
-		return conf.CodeOk, okData
-	} else {
-		return conf.CodeOk, postData
-	}
+	return conf.CodeOk, postData
 }
 
 //判断是否有这个参数字段

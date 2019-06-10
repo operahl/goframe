@@ -1,6 +1,5 @@
 [server]
     port=":9999"
-    aeskey="5df66666965dffc666effd8ffcfdfa66"
     mode="test"
     #release
     ginmode="debug"

@@ -1,8 +1,6 @@
 package conf
 
 import (
-	"encoding/hex"
-
 	"github.com/BurntSushi/toml"
 )
 
@@ -11,8 +9,6 @@ var Config Conf
 type Conf struct {
 	Server struct {
 		Port               string //http服务端口
-		Aeskey             string //aes加密秘钥
-		AeskeyBytes        []byte //同上，二进制状态，初始访问会对其赋值，进行Cache
 		WhiteIp            string //input接口IP白名单
 		Mode               string
 		Ginmode            string
@@ -74,11 +70,6 @@ func ReadCfg(path string) Conf {
 	}
 	if _, err := toml.DecodeFile(path, &Config); err != nil {
 		panic("Parse File Error:" + err.Error())
-	}
-	if aeskey, err := hex.DecodeString(Config.Server.Aeskey); err != nil {
-		panic("aes key error:" + err.Error())
-	} else {
-		Config.Server.AeskeyBytes = aeskey
 	}
 	return Config
 }
