@@ -6,6 +6,7 @@ require (
 	cloud.google.com/go v0.39.0 // indirect
 	github.com/360EntSecGroup-Skylar/excelize v1.4.1
 	github.com/BurntSushi/toml v0.3.1
+	github.com/caixw/apidoc v0.0.0-20181114133446-643d18f24903 // indirect
 	github.com/garyburd/redigo v1.6.0
 	github.com/gin-gonic/gin v1.4.0
 	github.com/go-sql-driver/mysql v1.4.1
