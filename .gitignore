@@ -1,0 +1,7 @@
+.idea/
+lbin/
+bin/
+pkg/
+doc/
+src/go.sum
+**/.DS_STORE
