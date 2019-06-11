@@ -16,9 +16,13 @@ ofoodapi:
 linux_ofoodapi:
 	cd src/app/api; ${ENVARG} ${LINUXARG} go build ${BUILDARG} -o ../../../lbin/ofoodapi main.go; cd -
 
+doc:
+	apidoc -i src/ -o apidoc/;
+
 clean:
 	rm -fr bin/*
 	rm -fr lbin/*
+	rm -fr apidoc/*
 	chmod -R 766 pkg/*
 	\rm -r pkg/*
 	rm src/go.sum
